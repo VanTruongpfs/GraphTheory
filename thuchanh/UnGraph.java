@@ -184,6 +184,7 @@ public class UnGraph extends Graph{
 				}
 				return false;
 			}
+			//20
 			@Override
 			public ArrayList<Integer> findEulerCycle( int start) {
 				Stack<Integer> stack = new Stack<>();
@@ -213,6 +214,7 @@ public class UnGraph extends Graph{
 				    
 				  return eulerCycle;
 			}
+			//21
 			@Override
 			public ArrayList<Integer> findPathEuler() {
 				Stack<Integer> stack = new Stack<Integer>();
@@ -247,6 +249,60 @@ public class UnGraph extends Graph{
 				}
 				return pathEuler;
 			}
-	
+			//24
+			@Override
+			public List<Integer> findHamiltonianCycle(int start) {
+		        Stack<Integer> stack = new Stack<>();
+		        boolean[] visited = new boolean[numVexs];
+		        List<Integer> path = new ArrayList<>();
+
+		        stack.push(start);
+		        visited[start] = true;
+		        path.add(start);
+		        while (!stack.isEmpty()) {
+		            int node = stack.pop();
+		            for (int neighbor = 0; neighbor < numVexs; neighbor++) {
+		                if (adjMatrix[node][neighbor]==1 && !visited[neighbor]) {
+		                    stack.push(neighbor);
+		                    visited[neighbor] = true;
+		                    path.add(neighbor);
+		                    break;
+		                }
+		            }
+		            // Nếu đi qua đủ numVertices và có cạnh quay về startNode -> Có chu trình Hamilton
+		            if (path.size() == numVexs && adjMatrix[start][path.get(path.size()-1)]==1 ) {
+		            	path.add(start);
+		                return path;
+		            }
+		        }
+		        return null; // Không tìm thấy chu trình Hamilton
+		    }
+			//25
+			@Override
+			public List<Integer> findHamiltonianPath(int start) {
+				  Stack<Integer> stack = new Stack<>();
+			        boolean[] visited = new boolean[numVexs];
+			        List<Integer> path = new ArrayList<>();
+			        stack.push(start);
+			        visited[start] = true;
+			        path.add(start);
+			        while (!stack.isEmpty()) {
+			            int node = stack.pop();
+			            for (int neighbor = 0; neighbor < numVexs; neighbor++) {
+			                if (adjMatrix[node][neighbor]==1 && !visited[neighbor]) {
+			                    stack.push(neighbor);
+			                    visited[neighbor] = true;
+			                    path.add(neighbor);
+			                    break;
+			                }
+			            }
+			            // Nếu đi qua đủ numVertices và có cạnh quay về startNode -> Có chu trình Hamilton
+			            if (path.size() == numVexs) {
+			                return path;
+			            }
+			        }
+
+			        return null; // Không tìm thấy chu trình Hamilton
+			    }
 	
 }

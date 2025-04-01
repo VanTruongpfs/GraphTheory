@@ -19,7 +19,7 @@ import java.util.Vector;
 public abstract class Graph {
 	protected int numVexs;
 	protected int[][] adjMatrix;
-	protected  String path="src/thuchanh/test3.txt";
+	protected  String path="src/thuchanh/test2.txt";
 	protected boolean[] track = new boolean[numVexs];
 	ArrayList<Integer> dfs = new ArrayList<Integer>(); 
 	ArrayList<Integer> bfs = new ArrayList<Integer>(); 
@@ -260,87 +260,9 @@ public abstract class Graph {
 	//câu 21
 		public abstract ArrayList<Integer> findPathEuler();
 	// câu 24
-		public List<Integer> findHamiltonianCycle() {
-		    Stack<Integer> stack = new Stack<>();
-		    boolean[] visited = new boolean[numVexs];
-		    List<Integer> path = new ArrayList<>();
-
-		    stack.push(0);
-		    visited[0] = true;
-		    path.add(0);
-
-		    while (!stack.isEmpty()) {
-		        int current = stack.peek();
-
-		        // Nếu đã đi qua tất cả các đỉnh, kiểm tra xem có thể quay về 0 không
-		        if (path.size() == numVexs) { 
-		            if (adjMatrix[current][0] == 1) { 
-		                path.add(0);
-		                return path;
-		            }
-		        }
-
-		        boolean foundNext = false;
-		        for (int next = 0; next < numVexs; next++) {
-		            if (!visited[next] && adjMatrix[current][next] == 1) {
-		                stack.push(next);
-		                visited[next] = true;
-		                path.add(next);
-		                foundNext = true;
-		                break;
-		            }
-		        }
-
-		        // Nếu không tìm được đỉnh tiếp theo, quay lui
-		        if (!foundNext) {
-		            stack.pop();
-		            if (!stack.isEmpty()) {
-		                int last = path.remove(path.size() - 1);
-		                visited[last] = false; // Sửa lỗi quan trọng ở đây
-		            }
-		        }
-		    }
-
-		    return null; // Không tìm thấy chu trình Hamilton
-		}
+		public abstract List<Integer> findHamiltonianCycle(int start);
 	//cau 25
-		public List<Integer> findHamiltonianPath(int start) {
-	        Stack<Integer> stack = new Stack<>();
-	        boolean[] visited = new boolean[numVexs];
-	        List<Integer> path = new ArrayList<>();
-
-	        stack.push(start);
-	        visited[start] = true;
-	        path.add(start);
-
-	        while (!stack.isEmpty()) {
-	            int current = stack.peek();
-	            // Nếu đã đi qua tất cả các đỉnh
-	            if (path.size() == numVexs) {
-	                return path;
-	            }
-	            boolean foundNext = false;
-	            for (int next = 0; next < numVexs; next++) {
-	                if (!visited[next] && adjMatrix[current][next] == 1) {
-	                    stack.push(next);
-	                    visited[next] = true;
-	                    path.add(next);
-	                    foundNext = true;
-	                    break;
-	                }
-	            }
-
-	            // Nếu không tìm được đường đi tiếp, quay lui
-	            if (!foundNext) {
-	                stack.pop();
-	                if (!stack.isEmpty()) {
-	                    visited[current] = false;
-	                    path.remove(path.size() - 1);
-	                }
-	            }
-	        }
-	        return null; // Không tìm thấy đường đi Hamilton
-	    }
+		public abstract List<Integer> findHamiltonianPath(int start);
 	
 
  }
