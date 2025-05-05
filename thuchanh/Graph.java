@@ -19,7 +19,7 @@ import java.util.Vector;
 public abstract class Graph {
 	protected int numVexs;
 	protected int[][] adjMatrix;
-	protected  String path="src/thuchanh/test2.txt";
+	protected  String path="src/thuchanh/bellmanfod.txt";
 	protected boolean[] track = new boolean[numVexs];
 	ArrayList<Integer> dfs = new ArrayList<Integer>(); 
 	ArrayList<Integer> bfs = new ArrayList<Integer>(); 
@@ -32,7 +32,7 @@ public abstract class Graph {
 		this.adjMatrix = adjMatrix;
 	}
 	public Graph() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	//cau 1
 	public boolean loadGraph(String pathFile) throws IOException{
@@ -263,6 +263,18 @@ public abstract class Graph {
 		public abstract List<Integer> findHamiltonianCycle(int start);
 	//cau 25
 		public abstract List<Integer> findHamiltonianPath(int start);
-	
-
- }
+		//cau 26
+		public abstract void findMST(int start, int[][] adjMatrix);
+		//cau 27
+		public abstract int[][] dfsMST(int v);
+		//cau 28
+		public abstract int[][] bfsMST(int v);
+		//cau 29
+		public abstract boolean hasCircle(int u, int v, int[][] a);
+		// câu 30
+		public abstract int[][] kruskalMST();
+		//câu 31
+		public abstract int[][] primMST();
+		public abstract int[][] dijkstra(int v);
+		public abstract void bellmanfod();
+}

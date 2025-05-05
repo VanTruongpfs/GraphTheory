@@ -42,6 +42,18 @@ public class MainUn {
 		unGraph.printMatrix(unGraph.adjMatrix);
 //		unGraph.loadGraph(unGraph.path);
 		System.out.println("Đường Đi: "+unGraph.findHamiltonianPath(0));
+		unGraph.loadGraph(unGraph.path);
+		
+		unGraph.dfsMST(0);
+		System.out.println(unGraph.bfsMST(0));
+		unGraph.findMST(0, unGraph.adjMatrix);
+		unGraph.kruskalMST();
+		unGraph.loadGraph(unGraph.path);
+		unGraph.primMST();
+//		unGraph.dijkstra(0);
+		unGraph.bellmanfod();
+		
+		
 
 		
 		
